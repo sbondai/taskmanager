@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 
-@WebFilter("/*") // Apply filter to all incoming requests
+@WebFilter("/*")
 public class LoggingFilter implements Filter {
 
     @Override

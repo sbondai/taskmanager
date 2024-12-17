@@ -33,3 +33,5 @@ CREATE TABLE user_permissions (
 -- Add the CHECK constraint separately for status (H2 Compatibility)
 ALTER TABLE tasks
     ADD CONSTRAINT chk_status CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED'));
+
+ALTER TABLE tasks ALTER COLUMN status SET DEFAULT 'PENDING';
