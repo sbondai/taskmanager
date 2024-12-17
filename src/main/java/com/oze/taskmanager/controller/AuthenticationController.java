@@ -8,8 +8,12 @@ import com.oze.taskmanager.dto.UserRequestDto;
 import com.oze.taskmanager.security.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(AUTH)
@@ -20,10 +24,11 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<String> register(@RequestBody UserRequestDto userRequestDto) {
         log.info("Registering user: {}", userRequestDto.getUsername());
-        AuthenticationResponse response = authenticationService.register(userRequestDto);
-        return ResponseEntity.ok(response);
+        authenticationService.register(userRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body("User registered successfully. Waiting for admin activation.");
     }
 
     @PostMapping("/login")

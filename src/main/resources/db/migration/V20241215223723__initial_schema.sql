@@ -22,6 +22,14 @@ CREATE TABLE tasks (
                        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
+-- Create Permissions Table
+CREATE TABLE user_permissions (
+                                  user_id UUID NOT NULL,
+                                  permission VARCHAR(50) NOT NULL,
+                                  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
 -- Add the CHECK constraint separately for status (H2 Compatibility)
 ALTER TABLE tasks
     ADD CONSTRAINT chk_status CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED'));

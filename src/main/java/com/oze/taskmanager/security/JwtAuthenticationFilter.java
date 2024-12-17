@@ -51,10 +51,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             User user = userRepository.findByUsername(username).orElse(null);
 
             if (user != null && jwtService.isTokenValid(jwt, user.getUsername())) {
+                CustomUserPrincipal principal = new CustomUserPrincipal(user);
                 UsernamePasswordAuthenticationToken authToken =
-                    new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
+                    new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
+
                 SecurityContextHolder.getContext().setAuthentication(authToken);
                 log.info("User authenticated: {}", username);
+            } else {
+                log.warn("Token is invalid or user not found for username: {}", username);
             }
         }
 
