@@ -1,0 +1,37 @@
+{
+  "name": "TaskManagerEnvironment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081/taskmanager",
+      "enabled": true
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "enabled": true,
+      "description": "Token for Admin authentication"
+    },
+    {
+      "key": "userToken",
+      "value": "",
+      "enabled": true,
+      "description": "Token for User authentication"
+    },
+    {
+      "key": "taskId",
+      "value": "",
+      "enabled": true,
+      "description": "ID of the Task created for testing"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "enabled": true,
+      "description": "ID of the User created for testing"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2024-06-08T12:00:00.000Z",
+  "_postman_exported_using": "Postman/10.16.0"
+}

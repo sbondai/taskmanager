@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  taskmanager:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:taskmanagerdb
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: test1234
